@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/htw-argo-floats-webapp",
+    "public": "dist/htw-berlin-ecco-webapp",
     "ignore": [
       "firebase.json",
       "**/.*",

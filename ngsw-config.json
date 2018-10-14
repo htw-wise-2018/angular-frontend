@@ -12,7 +12,8 @@
           "/*.js"
         ]
       }
-    }, {
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
@@ -20,6 +21,31 @@
         "files": [
           "/assets/**"
         ]
+      }
+    },
+    {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "maps",
+      "urls": [
+        "https://api.tiles.mapbox.com/v4/mapbox.satellite/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 5000,
+        "maxAge": "28d",
+        "timeout": "10s",
+        "strategy": "performance"
       }
     }
   ]
