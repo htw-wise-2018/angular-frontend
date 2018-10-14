@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  // height: calc(100% - 64px);
+  height: 100%;
+  position: relative;
+}
+
+main {
+  position: absolute;
+  // top: 64px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}

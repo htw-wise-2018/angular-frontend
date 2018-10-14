@@ -1,0 +1,93 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+$htw-primary-green: #76B900;
+$htw-secondary-blue: #0082D1;
+$htw-secondary-orange: #FF5F00;
+$htw-secondary-grey: #AFAFAF;
+
+$htw-primary: (
+  50: $htw-primary-green,
+  100: $htw-primary-green,
+  200: $htw-primary-green,
+  300: $htw-primary-green,
+  400: $htw-primary-green,
+  500: $htw-primary-green,
+  600: $htw-primary-green,
+  700: $htw-primary-green,
+  800: $htw-primary-green,
+  900: $htw-primary-green,
+  A100: $htw-primary-green,
+  A200: $htw-primary-green,
+  A400: $htw-primary-green,
+  A700: $htw-primary-green,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$htw-accent: (
+  50: $htw-secondary-grey,
+  100: $htw-secondary-grey,
+  200: $htw-secondary-grey,
+  300: $htw-secondary-grey,
+  400: $htw-secondary-grey,
+  500: $htw-secondary-grey,
+  600: $htw-secondary-grey,
+  700: $htw-secondary-grey,
+  800: $htw-secondary-grey,
+  900: $htw-secondary-grey,
+  A100: $htw-secondary-grey,
+  A200: $htw-secondary-grey,
+  A400: $htw-secondary-grey,
+  A700: $htw-secondary-grey,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$htw-app-primary: mat-palette($htw-primary);
+$htw-app-accent: mat-palette($htw-accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$htw-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass floats-map-google containing all of the palettes).
+$htw-app-theme: mat-light-theme($htw-app-primary, $htw-app-accent, $htw-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($htw-app-theme);
