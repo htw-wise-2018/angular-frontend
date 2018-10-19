@@ -135,7 +135,9 @@ export class MapComponent implements OnInit {
   }
 
   initMarkersLayer() {
-    this.markersLayer = L.markerClusterGroup({});
+    this.markersLayer = L.markerClusterGroup({
+      maxClusterRadius: 45
+    });
   }
 
   drawMarkers() {
