@@ -1,6 +1,6 @@
 export interface FloatsResponse {
   crs: Crs;
-  features?: (FeaturesEntity)[] | null;
+  features?: (Feature)[] | null;
   type: string;
 }
 export interface Crs {
@@ -10,16 +10,16 @@ export interface Crs {
 export interface CrsProperties {
   name: string;
 }
-export interface FeaturesEntity {
+export interface Feature {
   geometry: Geometry;
-  properties: FeaturesEntityProperties;
+  properties: FeatureProperties;
   type: string;
 }
 export interface Geometry {
   coordinates?: [number, number];
   type: string;
 }
-export interface FeaturesEntityProperties {
+export interface FeatureProperties {
   feature_type: string;
   identifier: string;
   last_seen: string;
