@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { FloatsResponse } from '../interfaces/floats-response';
 import { Float } from '../models/float.model';
 
 @Injectable({
@@ -23,21 +24,15 @@ export class FloatsDataService {
 
   getFloats(): Observable<Float[]> {
     // return this.httpClient.get<Float[]>('assets/data.json');
-    return this.httpClient.get<Float[]>('assets/last_seen.json').pipe(
-      map((result: any) => result.features),
-      map((features: object[]) => {
-        return features.map((feature: any) => ({
+    return this.httpClient.get<FloatsResponse>('assets/last_seen.json').pipe(
+      map(response => response.features),
+      map(features => {
+        return features.map(feature => ({
           longitude: feature.geometry.coordinates[0],
           latitude: feature.geometry.coordinates[1]
-        } as Float));
+        }));
       })
     );
-
-    /*
-    return timer(1000).pipe(
-      mapTo(this.getMockFloats())
-    );
-    */
   }
 }
 
