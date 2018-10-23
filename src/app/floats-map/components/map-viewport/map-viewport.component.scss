@@ -2,3 +2,16 @@
   display: block;
   height: 100%;
 }
+
+.info-card{
+  position: fixed;
+  width: 400px;
+  z-index: 999;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+td{
+  padding-right: 80px;
+  line-height: 2;
+}
