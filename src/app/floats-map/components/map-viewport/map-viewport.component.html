@@ -1,5 +1,35 @@
+<mat-card class="info-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Messstation 4901401</mat-card-title>
+    <mat-card-subtitle>Irminger Sea, Argo equivalent - AMY BOWER</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="/assets/1900710.png" alt="">
+
+  <mat-card-content>
+    <table>
+      <tbody>
+        <tr>
+          <td>Startdatum</td>
+          <td>28. December 2008</td>
+        </tr>
+        <tr>
+          <td>Zuletzt gesehen</td>
+          <td>10. December 2012</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
 <app-map-leaflet [showMarkersLayer]="markersLayer | async"
-                 [showSaltinessLayer]="saltinessLayer | async"></app-map-leaflet>
+                   [showSaltinessLayer]="saltinessLayer | async"></app-map-leaflet>
+
+
 
 <!--<app-htw-logo></app-htw-logo>-->
 <app-floats-filter-button></app-floats-filter-button>
