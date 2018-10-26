@@ -3,9 +3,11 @@ import { Select } from '@ngxs/store';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import { Observable } from 'rxjs';
+import { map, mapTo } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { Float } from '../../models/float.model';
+import { FloatsQuery } from '../../queries/floats.query';
 import { FloatsService } from '../../services/floats.service';
 import { FloatsState } from '../../state/floats.state';
 
@@ -55,11 +57,16 @@ export class MapComponent implements OnInit {
   markersLayer: L.MarkerClusterGroup;
   saltinessLayer: HeatmapOverlay;
 
-  constructor(private floatsService: FloatsService) {
+  constructor(private floatsQuery: FloatsQuery, private floatsService: FloatsService) {
     this.initTiles();
     this.initSaltinessHeatmap();
     this.initMarkersLayer();
-    this.floatsService.getFloats().subscribe();
+    this.floatsQuery.getFloats().subscribe();
+
+
+    this.floatsService.getFloats().subscribe(value => {
+      console.log(value);
+    });
   }
 
   ngOnInit() {
@@ -138,20 +145,5 @@ export class MapComponent implements OnInit {
     this.markersLayer = L.markerClusterGroup({
       maxClusterRadius: 45
     });
-  }
-
-  drawMarkers() {
-    /*this.floatsService.getFloats().subscribe(floats => {
-      const markers = floats.map(float => L.marker([float.latitude, float.longitude]).bindPopup('TEEEST'));
-      this.markersLayer.addLayers(markers);
-    });*/
-  }
-
-  drawSaltinessHeatmap() {
-
-    /*
-    this.floatsService.getFloats().subscribe(floats => {
-
-    });*/
   }
 }

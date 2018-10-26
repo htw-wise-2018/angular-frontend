@@ -10,6 +10,7 @@ import { MapComponent } from './components/map/map.component';
 import { FloatsMapRoutingModule } from './floats-map-routing.module';
 import { FloatsState } from './state/floats.state';
 import { MapState } from './state/map.state';
+import { DetailsDialogComponent } from './components/details-dialog/details-dialog.component';
 
 @NgModule({
   imports: [
@@ -22,10 +23,12 @@ import { MapState } from './state/map.state';
     MapViewportComponent,
     MapComponent,
     FloatsFilterButtonComponent,
-    HtwLogoComponent
+    HtwLogoComponent,
+    DetailsDialogComponent
   ],
   entryComponents: [
-    MapFilterDialogComponent
+    MapFilterDialogComponent,
+    DetailsDialogComponent
   ]
 })
 export class FloatsMapModule {

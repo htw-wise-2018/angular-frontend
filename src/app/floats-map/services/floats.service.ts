@@ -1,27 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { FloatsResponse } from '../interfaces/floats-response';
 import { Float } from '../models/float.model';
-import { AddFloats } from '../state/floats.actions';
-import { FloatsDataService } from './floats-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FloatsService {
+  constructor(private httpClient: HttpClient) {
 
-  constructor(
-    private floatsDataService: FloatsDataService,
-    private store: Store
-  ) {
   }
 
   getFloats(): Observable<Float[]> {
-    return this.floatsDataService.getFloats().pipe(
-      tap(floats => {
-        this.store.dispatch(new AddFloats(floats));
+    return this.httpClient.get<FloatsResponse>('assets/last_seen.json').pipe(
+      map(response => response.features),
+      map(features => {
+        return features.map(feature => ({
+          longitude: feature.geometry.coordinates[0],
+          latitude: feature.geometry.coordinates[1]
+        }));
       })
     );
   }
+
+  getFloatDetails(): Observable<any> {
+    return this.httpClient.get('lalala');
+  }
 }
+
