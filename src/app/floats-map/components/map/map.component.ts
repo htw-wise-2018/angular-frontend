@@ -1,15 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Select } from '@ngxs/store';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import { Observable } from 'rxjs';
-import { map, mapTo } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
-import { Float } from '../../models/float.model';
-import { FloatsQuery } from '../../queries/floats.query';
-import { FloatsService } from '../../services/floats.service';
-import { FloatsState } from '../../state/floats.state';
+import { FloatsMapQuery } from '../../queries/floats-map.query';
+import { FloatsMapService } from '../../services/floats-map.service';
 
 @Component({
   selector: 'app-map-leaflet',
@@ -18,9 +13,6 @@ import { FloatsState } from '../../state/floats.state';
 })
 export class MapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer: ElementRef;
-  @Select(FloatsState.floats) floats: Observable<Float[]>;
-
-
   private _showMarkersLayer: boolean;
 
   @Input()
@@ -57,16 +49,14 @@ export class MapComponent implements OnInit {
   markersLayer: L.MarkerClusterGroup;
   saltinessLayer: HeatmapOverlay;
 
-  constructor(private floatsQuery: FloatsQuery, private floatsService: FloatsService) {
+  constructor(
+    private floatsMapQuery: FloatsMapQuery,
+    private floatsMapService: FloatsMapService
+  ) {
     this.initTiles();
-    this.initSaltinessHeatmap();
+    this.initSaltinessLayer();
     this.initMarkersLayer();
-    this.floatsQuery.getFloats().subscribe();
-
-
-    this.floatsService.getFloats().subscribe(value => {
-      console.log(value);
-    });
+    this.floatsMapService.loadFloats();
   }
 
   ngOnInit() {
@@ -78,7 +68,7 @@ export class MapComponent implements OnInit {
 
     this.initBaseMap();
 
-    this.floats.subscribe(floats => {
+    this.floatsMapQuery.selectAll().subscribe(floats => {
       this.saltinessLayer.setData({
         data: floats
       });
@@ -129,7 +119,7 @@ export class MapComponent implements OnInit {
     });
   }
 
-  initSaltinessHeatmap() {
+  initSaltinessLayer() {
     this.saltinessLayer = new HeatmapOverlay({
       radius: 1.25,
       maxOpacity: 0.8,

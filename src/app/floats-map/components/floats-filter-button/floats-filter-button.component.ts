@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Store } from '@ngxs/store';
-import { ToggleMarkersLayer, ToggleSaltinessLayer } from '../../state/map.actions';
+import { FloatsMapQuery } from '../../queries/floats-map.query';
+import { FloatsMapService } from '../../services/floats-map.service';
 import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
 
 @Component({
@@ -13,7 +13,8 @@ export class FloatsFilterButtonComponent implements OnInit {
 
   constructor(
     private dialogService: MatDialog,
-    private store: Store
+    private floatsMapQuery: FloatsMapQuery,
+    private floatsMapService: FloatsMapService
   ) {
   }
 
@@ -21,11 +22,13 @@ export class FloatsFilterButtonComponent implements OnInit {
   }
 
   onToggleSaltinessLayerClick() {
-    this.store.dispatch(new ToggleSaltinessLayer());
+    const visibility = this.floatsMapQuery.getSnapshot().ui.saltinessLayerVisibility;
+    this.floatsMapService.updateSaltinessLayerVisibility(!visibility);
   }
 
   onToggleMarkersLayerClick() {
-    this.store.dispatch(new ToggleMarkersLayer());
+    const visibility = this.floatsMapQuery.getSnapshot().ui.markersLayerVisibility;
+    this.floatsMapService.updateMarkersLayerVisibility(!visibility);
   }
 
   onOpenDialog() {

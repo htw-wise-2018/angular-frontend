@@ -1,7 +1,8 @@
 <!--<app-details-dialog></app-details-dialog>-->
 
-<app-map-leaflet [showMarkersLayer]="markersLayer | async"
-                 [showSaltinessLayer]="saltinessLayer | async"></app-map-leaflet>
+<app-map-leaflet
+  [showMarkersLayer]="markersLayerVisibility | async"
+  [showSaltinessLayer]="saltinessLayerVisibility$ | async"></app-map-leaflet>
 
 
 <!--<app-htw-logo></app-htw-logo>-->
