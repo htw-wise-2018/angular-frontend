@@ -1,4 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ID } from '@datorama/akita';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 
@@ -51,7 +53,8 @@ export class MapComponent implements OnInit {
 
   constructor(
     private floatsMapQuery: FloatsMapQuery,
-    private floatsMapService: FloatsMapService
+    private floatsMapService: FloatsMapService,
+    private router: Router
   ) {
     this.initTiles();
     this.initSaltinessLayer();
@@ -72,13 +75,14 @@ export class MapComponent implements OnInit {
       this.saltinessLayer.setData({
         data: floats
       });
+      this.markersLayer.clearLayers();
       this.markersLayer.addLayers(
         floats.map(
           float => L.marker(
             [float.latitude, float.longitude], {
               icon: customDefaultIcon
             }
-          ).bindPopup('TEEEST')
+          ).on('click', event => this.openFloatDetails(float.id))
         )
       );
     });
@@ -135,5 +139,9 @@ export class MapComponent implements OnInit {
     this.markersLayer = L.markerClusterGroup({
       maxClusterRadius: 45
     });
+  }
+
+  openFloatDetails(id: ID) {
+    this.router.navigate(['/float', id]);
   }
 }

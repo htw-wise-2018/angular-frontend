@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: './floats-map/floats-map.module#FloatsMapModule'
   },
   {

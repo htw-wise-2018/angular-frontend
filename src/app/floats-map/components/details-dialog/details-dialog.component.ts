@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details-dialog.component.scss']
 })
 export class DetailsDialogComponent implements OnInit {
+  constructor() {
 
-  constructor() { }
-
-  ngOnInit() {
   }
+
+  ngOnInit(): void {
+  }
+
 
 }

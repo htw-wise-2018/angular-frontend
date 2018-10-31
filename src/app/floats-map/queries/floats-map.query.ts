@@ -8,7 +8,8 @@ import { FloatsMapState, FloatsMapStore } from '../store/floats-map.store';
 })
 export class FloatsMapQuery extends QueryEntity<FloatsMapState, Float> {
   selectMarkersLayerVisibility$ = this.select(state => state.ui.markersLayerVisibility);
-  selectSaltinessLayerVisible$ = this.select(state => state.ui.saltinessLayerVisibility);
+  selectSaltinessLayerVisibility$ = this.select(state => state.ui.saltinessLayerVisibility);
+  selectSidenavOpened$ = this.select(state => state.ui.sidenavOpened);
 
   constructor(protected floatsStore: FloatsMapStore) {
     super(floatsStore);

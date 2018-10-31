@@ -1,17 +1,17 @@
-:host {
-  display: block;
-  height: 100%;
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-.info-card{
-  position: fixed;
-  width: 400px;
-  z-index: 999;
-  margin-left: 20px;
-  margin-top: 20px;
+
+mat-sidenav {
+  padding: 1rem;
 }
 
-td{
-  padding-right: 80px;
-  line-height: 2;
+
+.right {
+  text-align: right;
 }

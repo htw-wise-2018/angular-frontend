@@ -1,9 +1,27 @@
-<!--<app-details-dialog></app-details-dialog>-->
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="sidenavHasBackdrop">
+  <mat-sidenav
+    #sidenav
+    [opened]="sidenavOpened$ | async"
+    [mode]="sidenavMode"
+    (openedChange)="onOpenChange($event)">
 
-<app-map-leaflet
-  [showMarkersLayer]="markersLayerVisibility | async"
-  [showSaltinessLayer]="saltinessLayerVisibility$ | async"></app-map-leaflet>
+    <div class="right">
+      <button mat-icon-button (click)="onSidenavClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
 
-<!--<app-htw-logo></app-htw-logo>-->
-<app-floats-filter-button></app-floats-filter-button>
+    <router-outlet></router-outlet>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-map-leaflet
+      [showMarkersLayer]="markersLayerVisibility$ | async"
+      [showSaltinessLayer]="saltinessLayerVisibility$ | async"></app-map-leaflet>
+
+    <app-floats-filter-button></app-floats-filter-button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

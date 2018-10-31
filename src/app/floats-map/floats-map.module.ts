@@ -8,6 +8,7 @@ import { MapViewportComponent } from './components/map-viewport/map-viewport.com
 import { MapComponent } from './components/map/map.component';
 
 import { FloatsMapRoutingModule } from './floats-map-routing.module';
+import { FloatDetailsComponent } from './components/float-details/float-details.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { FloatsMapRoutingModule } from './floats-map-routing.module';
     MapComponent,
     FloatsFilterButtonComponent,
     HtwLogoComponent,
-    DetailsDialogComponent
+    DetailsDialogComponent,
+    FloatDetailsComponent
   ],
   entryComponents: [
     MapFilterDialogComponent,
