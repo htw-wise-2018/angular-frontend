@@ -1,52 +1,82 @@
-<ng-container *ngIf="data">
+<mat-list>
+  <mat-list-item>Details</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item class="details-container">
+    <dl *ngIf="float$ | async as float">
+      <dt>ID</dt>
+      <dd>{{float.id}}</dd>
+      <dt>Longitude</dt>
+      <dd>{{float.longitude}}</dd>
+      <dt>Latidude</dt>
+      <dd>{{float.latitude}}</dd>
+    </dl>
+  </mat-list-item>
+  <mat-divider></mat-divider>
 
-  <div class="chart-container">
-    <h3 class="mat-title">Temperatur [°C]</h3>
-    <ngx-charts-line-chart
-      [yAxisTicks]="[0, 500, 1000]"
-      [legend]="false"
-      [showXAxisLabel]="false"
-      [showYAxisLabel]="false"
-      [gradient]="true"
-      [showGridLines]="true"
-      [legendPosition]="'bottom'"
-      [xAxisLabel]="'X-Axis'"
-      [yAxis]="'Y-Axis'"
-      [results]="data">
-    </ngx-charts-line-chart>
-  </div>
+  <mat-list-item>Temperatur [°C]</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item class="chart-list-item">
+    <div class="chart-container">
+      <ngx-charts-line-chart
+        [margin]="[0, 0, 0, 0]"
+        [scheme]="{ domain: ['#AA0000'] }"
+        [yAxisTicks]="[0, 500, 1000]"
+        [legend]="false"
+        [showXAxisLabel]="false"
+        [showYAxisLabel]="false"
+        [gradient]="false"
+        [showGridLines]="false"
+        [legendPosition]="'bottom'"
+        [xAxisLabel]="'X-Axis'"
+        [yAxis]="'Y-Axis'"
+        [results]="temperatureSerie">
+      </ngx-charts-line-chart>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
 
+  <mat-list-item>Druck [p]</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item class="chart-list-item">
+    <div class="chart-container">
+      <ngx-charts-line-chart
+        [margin]="[0, 0, 0, 0]"
+        [scheme]="{ domain: ['#AAAAAA'] }"
+        [yAxisTicks]="[0, 500, 1000]"
+        [legend]="false"
+        [showXAxisLabel]="false"
+        [showYAxisLabel]="false"
+        [gradient]="false"
+        [showGridLines]="false"
+        [legendPosition]="'bottom'"
+        [xAxisLabel]="'X-Axis'"
+        [yAxis]="'Y-Axis'"
+        [results]="pressureSerie">
+      </ngx-charts-line-chart>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
 
-  <div class="chart-container">
-    <h3 class="mat-title">Salzgehalt [g/l]</h3>
-    <ngx-charts-line-chart
-      [yAxisTicks]="[0, 500, 1000]"
-      [legend]="false"
-      [showXAxisLabel]="false"
-      [showYAxisLabel]="false"
-      [showGridLines]="true"
-      [legendPosition]="'bottom'"
-      [xAxisLabel]="'X-Axis'"
-      [yAxis]="'Y-Axis'"
-      [results]="data">
-    </ngx-charts-line-chart>
-  </div>
-
-
-  <div class="chart-container">
-    <h3 class="mat-title">Druck [p]</h3>
-    <ngx-charts-line-chart
-      [yAxisTicks]="[0, 500, 1000]"
-      [legend]="false"
-      [showXAxisLabel]="false"
-      [showYAxisLabel]="false"
-      [showGridLines]="true"
-      [legendPosition]="'bottom'"
-      [xAxisLabel]="'X-Axis'"
-      [yAxis]="'Y-Axis'"
-      [results]="data">
-    </ngx-charts-line-chart>
-  </div>
-
-</ng-container>
+  <mat-list-item>Salzgehalt [g/l]</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item class="chart-list-item">
+    <div class="chart-container">
+      <ngx-charts-line-chart
+        [margin]="[0, 0, 0, 0]"
+        [scheme]="{ domain: ['#0000AA'] }"
+        [yAxisTicks]="[0, 500, 1000]"
+        [legend]="false"
+        [showXAxisLabel]="false"
+        [showYAxisLabel]="false"
+        [gradient]="false"
+        [showGridLines]="false"
+        [legendPosition]="'bottom'"
+        [xAxisLabel]="'X-Axis'"
+        [yAxis]="'Y-Axis'"
+        [results]="saltinessSerie">
+      </ngx-charts-line-chart>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
 

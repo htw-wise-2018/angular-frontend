@@ -6,13 +6,14 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
-  MatIconModule,
+  MatIconModule, MatListModule,
   MatRadioModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxLineChartMarginDirective } from './directives/ngx-line-chart-margin.directive';
 
 
 @NgModule({
@@ -28,9 +29,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatDialogModule,
     MatCardModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    MatListModule
   ],
-  declarations: [],
+  declarations: [
+    NgxLineChartMarginDirective
+  ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -43,7 +47,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatDialogModule,
     MatCardModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    MatListModule,
+
+
+    NgxLineChartMarginDirective
   ]
 })
 export class SharedModule {

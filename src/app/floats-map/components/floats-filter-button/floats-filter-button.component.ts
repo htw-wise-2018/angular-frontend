@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
-import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
 
 @Component({
   selector: 'app-floats-filter-button',
@@ -32,13 +31,5 @@ export class FloatsFilterButtonComponent implements OnInit {
   }
 
   onOpenDialog() {
-    this.dialogService.open(DetailsDialogComponent, {
-      hasBackdrop: false,
-      maxHeight: 300,
-      position: {
-        left: '1rem',
-        top: '1rem'
-      }
-    });
   }
 }
