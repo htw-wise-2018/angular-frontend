@@ -12,6 +12,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    NgxChartsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -34,6 +36,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    NgxChartsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

@@ -1,1 +1,52 @@
-<pre>{{float | async | json}}</pre>
+<ng-container *ngIf="data">
+
+  <div class="chart-container">
+    <h3 class="mat-title">Temperatur [°C]</h3>
+    <ngx-charts-line-chart
+      [yAxisTicks]="[0, 500, 1000]"
+      [legend]="false"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [gradient]="true"
+      [showGridLines]="true"
+      [legendPosition]="'bottom'"
+      [xAxisLabel]="'X-Axis'"
+      [yAxis]="'Y-Axis'"
+      [results]="data">
+    </ngx-charts-line-chart>
+  </div>
+
+
+  <div class="chart-container">
+    <h3 class="mat-title">Salzgehalt [g/l]</h3>
+    <ngx-charts-line-chart
+      [yAxisTicks]="[0, 500, 1000]"
+      [legend]="false"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [showGridLines]="true"
+      [legendPosition]="'bottom'"
+      [xAxisLabel]="'X-Axis'"
+      [yAxis]="'Y-Axis'"
+      [results]="data">
+    </ngx-charts-line-chart>
+  </div>
+
+
+  <div class="chart-container">
+    <h3 class="mat-title">Druck [p]</h3>
+    <ngx-charts-line-chart
+      [yAxisTicks]="[0, 500, 1000]"
+      [legend]="false"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [showGridLines]="true"
+      [legendPosition]="'bottom'"
+      [xAxisLabel]="'X-Axis'"
+      [yAxis]="'Y-Axis'"
+      [results]="data">
+    </ngx-charts-line-chart>
+  </div>
+
+</ng-container>
+

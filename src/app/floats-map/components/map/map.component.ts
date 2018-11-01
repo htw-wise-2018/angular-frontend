@@ -15,6 +15,22 @@ import { FloatsMapService } from '../../services/floats-map.service';
 })
 export class MapComponent implements OnInit {
   @ViewChild('mapContainer') mapContainer: ElementRef;
+  map: L.Map;
+  tilesLayer: L.Layer;
+  markersLayer: L.MarkerClusterGroup;
+  saltinessLayer: HeatmapOverlay;
+
+  constructor(
+    private floatsMapQuery: FloatsMapQuery,
+    private floatsMapService: FloatsMapService,
+    private router: Router
+  ) {
+    this.initTiles();
+    this.initSaltinessLayer();
+    this.initMarkersLayer();
+    this.floatsMapService.loadFloats();
+  }
+
   private _showMarkersLayer: boolean;
 
   @Input()
@@ -43,23 +59,6 @@ export class MapComponent implements OnInit {
         this.saltinessLayer.removeFrom(this.map);
       }
     }
-  }
-
-
-  map: L.Map;
-  tilesLayer: L.Layer;
-  markersLayer: L.MarkerClusterGroup;
-  saltinessLayer: HeatmapOverlay;
-
-  constructor(
-    private floatsMapQuery: FloatsMapQuery,
-    private floatsMapService: FloatsMapService,
-    private router: Router
-  ) {
-    this.initTiles();
-    this.initSaltinessLayer();
-    this.initMarkersLayer();
-    this.floatsMapService.loadFloats();
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashbaordComponent } from './components/dashbaord/dashbaord.component';
@@ -11,4 +11,5 @@ import { DashbaordComponent } from './components/dashbaord/dashbaord.component';
   ],
   declarations: [DashbaordComponent]
 })
-export class AdminModule { }
+export class AdminModule {
+}
