@@ -27,6 +27,9 @@
         },
         "@schematics/angular:service": {
           "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
         }
       },
       "architect": {

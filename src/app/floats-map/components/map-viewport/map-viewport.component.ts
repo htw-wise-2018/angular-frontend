@@ -32,15 +32,6 @@ export class MapViewportComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.routerQuery.select(state => state.state.root.params).subscribe(params => {
-      this.floatsMapStore.setActive(params.id);
-
-      if (params.id) {
-        this.floatsMapService.updateSidenavOpened(true);
-      } else {
-        this.floatsMapService.updateSidenavOpened(false);
-      }
-    });
   }
 
   onOpenChange(opened: boolean) {

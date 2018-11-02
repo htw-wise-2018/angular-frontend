@@ -1,12 +1,13 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('class.handsetPortrait') handsetPortrait = false;
   @HostBinding('class.handsetLandscape') handsetLandscape = false;
   @HostBinding('class.tabletPortrait') tabletPortrait = false;
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
       Breakpoints.TabletPortrait,
       Breakpoints.WebLandscape,
       Breakpoints.WebPortrait
-    ]).subscribe(result => {
+    ]).pipe(
+      untilDestroyed(this)
+    ).subscribe(result => {
       if (result.breakpoints['(max-width: 599px) and (orientation: portrait)']) {
         this.handsetPortrait = true;
         this.handsetLandscape = false;
@@ -71,9 +74,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
   }
 
-
+  ngOnDestroy() {
+  }
 }

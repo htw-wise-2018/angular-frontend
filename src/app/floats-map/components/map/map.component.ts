@@ -1,8 +1,9 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { environment } from '../../../../environments/environment';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
@@ -13,7 +14,7 @@ import { FloatsMapService } from '../../services/floats-map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer') mapContainer: ElementRef;
   map: L.Map;
   tilesLayer: L.Layer;
@@ -70,7 +71,9 @@ export class MapComponent implements OnInit {
 
     this.initBaseMap();
 
-    this.floatsMapQuery.selectAll().subscribe(floats => {
+    this.floatsMapQuery.selectAll().pipe(
+      untilDestroyed(this)
+    ).subscribe(floats => {
       this.saltinessLayer.setData({
         data: floats
       });
@@ -86,6 +89,10 @@ export class MapComponent implements OnInit {
       );
     });
   }
+
+  ngOnDestroy() {
+  }
+
 
   initBaseMap() {
     const bounds = L.latLngBounds(

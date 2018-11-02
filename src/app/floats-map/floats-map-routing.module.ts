@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FloatDetailsComponent } from './components/float-details/float-details.component';
 import { MapViewportComponent } from './components/map-viewport/map-viewport.component';
+import { SidenavGuard } from './guards/sidenav.guard';
 
 const routes: Routes = [
   {
@@ -10,7 +11,9 @@ const routes: Routes = [
     children: [
       {
         path: 'float/:id',
-        component: FloatDetailsComponent
+        component: FloatDetailsComponent,
+        canActivate: [SidenavGuard],
+        canDeactivate: [SidenavGuard]
       }
     ]
   }
