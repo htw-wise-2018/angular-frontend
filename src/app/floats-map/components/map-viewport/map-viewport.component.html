@@ -4,6 +4,7 @@
     #sidenav
     [opened]="sidenavOpened$ | async"
     [mode]="sidenavMode"
+    [disableClose]="true"
     (openedChange)="onOpenChange($event)">
 
     <div class="close-button-container">

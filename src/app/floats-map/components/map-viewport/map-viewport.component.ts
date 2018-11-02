@@ -20,15 +20,15 @@ export class MapViewportComponent implements OnInit {
   sidenavHasBackdrop = false;
 
   constructor(
-    private floatMapsQuery: FloatsMapQuery,
-    private floatMapsService: FloatsMapService,
+    private floatsMapQuery: FloatsMapQuery,
+    private floatsMapService: FloatsMapService,
     private floatsMapStore: FloatsMapStore,
     private routerQuery: RouterQuery,
     private router: Router
   ) {
-    this.markersLayerVisibility$ = this.floatMapsQuery.selectMarkersLayerVisibility$;
-    this.saltinessLayerVisibility$ = this.floatMapsQuery.selectSaltinessLayerVisibility$;
-    this.sidenavOpened$ = this.floatMapsQuery.selectSidenavOpened$;
+    this.markersLayerVisibility$ = this.floatsMapQuery.selectMarkersLayerVisibility$;
+    this.saltinessLayerVisibility$ = this.floatsMapQuery.selectSaltinessLayerVisibility$;
+    this.sidenavOpened$ = this.floatsMapQuery.selectSidenavOpened$;
   }
 
   ngOnInit() {
@@ -36,15 +36,15 @@ export class MapViewportComponent implements OnInit {
       this.floatsMapStore.setActive(params.id);
 
       if (params.id) {
-        this.floatMapsService.updateSidenavOpened(true);
+        this.floatsMapService.updateSidenavOpened(true);
       } else {
-        this.floatMapsService.updateSidenavOpened(false);
+        this.floatsMapService.updateSidenavOpened(false);
       }
     });
   }
 
   onOpenChange(opened: boolean) {
-    this.floatMapsService.updateSidenavOpened(opened);
+    this.floatsMapService.updateSidenavOpened(opened);
   }
 
   async onSidenavClose() {
