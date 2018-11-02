@@ -19,7 +19,7 @@ const initialState: FloatsMapState = {
 };
 ​
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'floats' })
+@StoreConfig({ name: 'floatsMap' })
 export class FloatsMapStore extends EntityStore<FloatsMapState, Float> {
   constructor() {
     super(initialState);
