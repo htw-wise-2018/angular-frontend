@@ -3,12 +3,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
-  MatDialogModule,
+  MatDialogModule, MatFormFieldModule,
   MatIconModule, MatListModule,
   MatRadioModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -30,7 +31,10 @@ import { NgxLineChartMarginDirective } from './directives/ngx-line-chart-margin.
     MatCardModule,
     MatSidenavModule,
     MatRadioModule,
-    MatListModule
+    MatListModule,
+    MatBottomSheetModule,
+    MatSlideToggleModule,
+    MatFormFieldModule
   ],
   declarations: [
     NgxLineChartMarginDirective
@@ -49,7 +53,9 @@ import { NgxLineChartMarginDirective } from './directives/ngx-line-chart-margin.
     MatSidenavModule,
     MatRadioModule,
     MatListModule,
-
+    MatBottomSheetModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
 
     NgxLineChartMarginDirective
   ]

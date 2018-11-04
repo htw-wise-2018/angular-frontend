@@ -3,6 +3,7 @@
     class="mat-elevation-z24"
     #sidenav
     [opened]="sidenavOpened$ | async"
+    [autoFocus]="false"
     [mode]="sidenavMode"
     [disableClose]="true"
     (openedChange)="onOpenChange($event)">
@@ -22,7 +23,7 @@
       [showMarkersLayer]="markersLayerVisibility$ | async"
       [showSaltinessLayer]="saltinessLayerVisibility$ | async"></app-map-leaflet>
 
-    <app-floats-filter-button></app-floats-filter-button>
+    <app-button-nav></app-button-nav>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

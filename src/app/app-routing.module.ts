@@ -5,10 +5,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './floats-map/floats-map.module#FloatsMapModule'
-  },
-  {
-    path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
   }
 ];
 
