@@ -55,7 +55,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const customDefaultIcon: L.Icon = L.icon({
+    const customDefaultIcon = L.icon({
       iconUrl: 'assets/leaflet/marker-icon.png',
       shadowUrl: 'assets/leaflet/marker-shadow.png',
       iconAnchor: [13, 41]
