@@ -1,13 +1,15 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
+
 import * as L from 'leaflet';
-import 'leaflet.markercluster';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { environment } from '../../../../environments/environment';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
+
+declare var myGlify: any;
 
 @Component({
   selector: 'app-map-leaflet',
@@ -18,7 +20,6 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer') mapContainer: ElementRef;
   map: L.Map;
   tilesLayer: L.Layer;
-  markersLayer: L.MarkerClusterGroup;
   saltinessLayer: HeatmapOverlay;
 
   constructor(
@@ -28,7 +29,6 @@ export class MapComponent implements OnInit, OnDestroy {
   ) {
     this.initTiles();
     this.initSaltinessLayer();
-    this.initMarkersLayer();
     this.floatsMapService.loadFloats();
   }
 
@@ -37,14 +37,6 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input()
   set showMarkersLayer(show: boolean) {
     this._showMarkersLayer = show;
-
-    if (this.map) {
-      if (show) {
-        this.markersLayer.addTo(this.map);
-      } else {
-        this.markersLayer.removeFrom(this.map);
-      }
-    }
   }
 
   private _showSaltinessLayer: boolean;
@@ -71,22 +63,45 @@ export class MapComponent implements OnInit, OnDestroy {
 
     this.initBaseMap();
 
+    let map = this.map;
+    let isInit = false;
     this.floatsMapQuery.selectAll().pipe(
       untilDestroyed(this)
     ).subscribe(floats => {
+      console.log("floats", floats);
+
+      if(isInit)
+        return;
+
+      isInit = true;
+
+      let points = floats.map(f => {
+        let point = [f.latitude, f.longitude];
+        point["id"] = f.id;
+        return point;
+      });
+
+      let openFloatDetails = this.openFloatDetails.bind(this);
+      myGlify.points({
+        map: map,
+        click: function (e, point, xy) {
+          console.log(point);
+          openFloatDetails(point["id"]);
+        },
+        size: 10,
+
+        /* {Number} exagurates the size of the clickable area to make it easier to click a point */
+        sensitivity: 25,
+        color: {r: 30 / 255, g: 202 / 255, b: 227 / 255},
+        opacity: 0.8,
+        data: points,
+        className: "glify-canvas"
+      });
+
       this.saltinessLayer.setData({
         data: floats
       });
-      this.markersLayer.clearLayers();
-      this.markersLayer.addLayers(
-        floats.map(
-          float => L.marker(
-            [float.latitude, float.longitude], {
-              icon: customDefaultIcon
-            }
-          ).on('click', event => this.openFloatDetails(float.id))
-        )
-      );
+
     });
   }
 
@@ -115,9 +130,6 @@ export class MapComponent implements OnInit, OnDestroy {
       this.saltinessLayer.addTo(this.map);
     }
 
-    if (this._showMarkersLayer) {
-      this.markersLayer.addTo(this.map);
-    }
   }
 
   initTiles() {
@@ -138,12 +150,6 @@ export class MapComponent implements OnInit, OnDestroy {
       latField: 'latitude',
       lngField: 'longitude',
       valueField: 'saltiness'
-    });
-  }
-
-  initMarkersLayer() {
-    this.markersLayer = L.markerClusterGroup({
-      maxClusterRadius: 45
     });
   }
 
