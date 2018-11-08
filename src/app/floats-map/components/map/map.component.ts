@@ -20,7 +20,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer') mapContainer: ElementRef;
   map: L.Map;
   tilesLayer: L.Layer;
-  saltinessLayer: HeatmapOverlay;
+  saltinessLayer: any;
 
   constructor(
     private floatsMapQuery: FloatsMapQuery,
