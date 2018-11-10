@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
-import { GlifyService } from '../../services/leaflet/glify.service';
 import { MapBoxTilesLayerService } from '../../services/leaflet/layer/map-box-tiles-layer.service';
 import { MarkersLayerService } from '../../services/leaflet/layer/markers-layer.service';
 import { SaltinessLayerService } from '../../services/leaflet/layer/saltiness-layer.service';

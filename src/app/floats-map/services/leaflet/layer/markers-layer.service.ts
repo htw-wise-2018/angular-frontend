@@ -14,9 +14,9 @@ export class MarkersLayerService extends LayerService {
 
   constructor(
     private floatsMapQuery: FloatsMapQuery,
-    private leafletService: LeafletService
+    leafletService: LeafletService
   ) {
-    super(leafletService);
+    super(leafletService, floatsMapQuery.selectMarkersLayerVisibility$);
   }
 
   onClick(onClickFn: (e, point, xy) => void) {
@@ -32,7 +32,7 @@ export class MarkersLayerService extends LayerService {
           return point;
         }))
       ),
-      this.floatsMapQuery.selectMarkersLayerVisibility$
+      this.visibility$
     ]).subscribe(([points, visibility]) => {
       this.points = points;
 
@@ -46,7 +46,7 @@ export class MarkersLayerService extends LayerService {
     });
   }
 
-  show() {
+  protected show() {
     this.layer = L.glify.points({
       map: this.leafletService.getMap(),
       click: this.onClickFn,
@@ -60,7 +60,7 @@ export class MarkersLayerService extends LayerService {
     });
   }
 
-  hide() {
+  protected hide() {
     this.layer.remove();
   }
 }

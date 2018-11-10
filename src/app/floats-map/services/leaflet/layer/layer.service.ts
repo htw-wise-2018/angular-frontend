@@ -5,8 +5,8 @@ export abstract class LayerService {
   protected layer = null;
 
   protected constructor(
-    private leafletService: LeafletService,
-    private visibility$: Observable<boolean> = null
+    protected leafletService: LeafletService,
+    protected visibility$: Observable<boolean> = null
   ) {
   }
 
@@ -18,11 +18,11 @@ export abstract class LayerService {
     }
   }
 
-  private hide() {
+  protected hide() {
     this.layer.removeFrom(this.leafletService.getMap());
   }
 
-  private show() {
+  protected show() {
     this.layer.addTo(this.leafletService.getMap());
   }
 }
