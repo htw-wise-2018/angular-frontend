@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
-import { MapBoxTilesLayerService } from '../../services/leaflet/layer/map-box-tiles-layer.service';
-import { MarkersLayerService } from '../../services/leaflet/layer/markers-layer.service';
-import { SaltinessLayerService } from '../../services/leaflet/layer/saltiness-layer.service';
+import { EsriOceanBasemapTilesLayerService } from '../../services/leaflet/layers/esri-ocean-basemap-tiles-layer.service';
+import { MarkersLayerService } from '../../services/leaflet/layers/markers-layer.service';
+import { SaltinessLayerService } from '../../services/leaflet/layers/saltiness-layer.service';
 import { LeafletService } from '../../services/leaflet/leaflet.service';
 
 
@@ -22,7 +22,8 @@ export class MapComponent implements OnInit {
     private floatsMapService: FloatsMapService,
     private router: Router,
     private leafletService: LeafletService,
-    private mapBoxTilesLayerService: MapBoxTilesLayerService,
+    // private mapBoxTilesLayerService: MapBoxTilesLayerService,
+    private esriOceanBasemapTilesLayerService: EsriOceanBasemapTilesLayerService,
     private saltinessLayerService: SaltinessLayerService,
     private markersLayerService: MarkersLayerService
   ) {
@@ -33,7 +34,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.leafletService.init(this.mapContainer.nativeElement);
-    this.mapBoxTilesLayerService.init();
+    // this.mapBoxTilesLayerService.init();
+    this.esriOceanBasemapTilesLayerService.init();
     this.markersLayerService.init();
     this.saltinessLayerService.init();
   }
