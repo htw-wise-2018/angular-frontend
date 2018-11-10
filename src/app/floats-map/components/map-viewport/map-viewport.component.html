@@ -8,14 +8,16 @@
     [disableClose]="true"
     (openedChange)="onOpenChange($event)">
 
-    <div class="close-button-container">
-      <button mat-icon-button (click)="onSidenavClose()">
-        <mat-icon>close</mat-icon>
-      </button>
+    <div (swipeLeft)="onSwipe()">
+      <div class="close-button-container">
+        <button mat-icon-button (click)="onSidenavClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+
+      <router-outlet></router-outlet>
     </div>
-
-
-    <router-outlet></router-outlet>
   </mat-sidenav>
 
   <mat-sidenav-content>

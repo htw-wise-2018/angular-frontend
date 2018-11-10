@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { Observable } from 'rxjs';
@@ -12,6 +12,8 @@ import { FloatsMapStore } from '../../store/floats-map.store';
   styleUrls: ['./map-viewport.component.scss']
 })
 export class MapViewportComponent implements OnInit {
+
+
   saltinessLayerVisibility$: Observable<boolean>;
   markersLayerVisibility$: Observable<boolean>;
   sidenavOpened$: Observable<boolean>;
@@ -36,6 +38,15 @@ export class MapViewportComponent implements OnInit {
 
   onOpenChange(opened: boolean) {
     this.floatsMapService.updateSidenavOpened(opened);
+  }
+
+  onSwipe() {
+    this.floatsMapService.updateSidenavOpened(false);
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    this.floatsMapService.updateSidenavOpened(false);
   }
 
   async onSidenavClose() {
