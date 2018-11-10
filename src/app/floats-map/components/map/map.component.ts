@@ -1,15 +1,11 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-
-import * as L from 'leaflet';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-
 import { environment } from '../../../../environments/environment';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
 
-declare var myGlify: any;
 
 @Component({
   selector: 'app-map-leaflet',
@@ -18,8 +14,8 @@ declare var myGlify: any;
 })
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('mapContainer') mapContainer: ElementRef;
-  map: L.Map;
-  tilesLayer: L.Layer;
+  map: any;
+  tilesLayer: any;
   saltinessLayer: any;
 
   constructor(
@@ -55,47 +51,39 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const customDefaultIcon = L.icon({
-      iconUrl: 'assets/leaflet/marker-icon.png',
-      shadowUrl: 'assets/leaflet/marker-shadow.png',
-      iconAnchor: [13, 41]
-    });
-
     this.initBaseMap();
 
-    let map = this.map;
+    const map = this.map;
     let isInit = false;
     this.floatsMapQuery.selectAll().pipe(
       untilDestroyed(this)
     ).subscribe(floats => {
-      console.log("floats", floats);
-
-      if(isInit)
+      if (isInit) {
         return;
+      }
+
 
       isInit = true;
 
-      let points = floats.map(f => {
-        let point = [f.latitude, f.longitude];
-        point["id"] = f.id;
+      const points = floats.map(f => {
+        const point = [f.latitude, f.longitude];
+        point['id'] = f.id;
         return point;
       });
 
-      let openFloatDetails = this.openFloatDetails.bind(this);
-      myGlify.points({
+      L.glify.points({
         map: map,
-        click: function (e, point, xy) {
-          console.log(point);
-          openFloatDetails(point["id"]);
+        click: (e, point, xy) => {
+          this.openFloatDetails(point['id']);
         },
         size: 10,
 
         /* {Number} exagurates the size of the clickable area to make it easier to click a point */
         sensitivity: 25,
-        color: {r: 30 / 255, g: 202 / 255, b: 227 / 255},
+        color: { r: 30 / 255, g: 202 / 255, b: 227 / 255 },
         opacity: 0.8,
         data: points,
-        className: "glify-canvas"
+        className: 'glify-canvas'
       });
 
       this.saltinessLayer.setData({
@@ -115,7 +103,7 @@ export class MapComponent implements OnInit, OnDestroy {
       { lat: 85, lng: 175 }
     );
 
-    const mapOptions: L.MapOptions = {
+    const mapOptions = {
       attributionControl: true,
       zoomControl: false,
       maxBounds: bounds,
