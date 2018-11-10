@@ -16,3 +16,10 @@ mat-list-item.chart-list-item {
   height: 70px;
   margin-bottom: 1rem;
 }
+
+
+::ng-deep ngx-charts-line-chart {
+  text {
+    fill: #ffffff;
+  }
+}
