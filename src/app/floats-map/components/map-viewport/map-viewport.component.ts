@@ -12,12 +12,7 @@ import { FloatsMapStore } from '../../store/floats-map.store';
   styleUrls: ['./map-viewport.component.scss']
 })
 export class MapViewportComponent implements OnInit {
-
-
-  saltinessLayerVisibility$: Observable<boolean>;
-  markersLayerVisibility$: Observable<boolean>;
   sidenavOpened$: Observable<boolean>;
-
   sidenavMode: 'over' | 'push' | 'side' = 'over';
   sidenavHasBackdrop = false;
 
@@ -28,8 +23,6 @@ export class MapViewportComponent implements OnInit {
     private routerQuery: RouterQuery,
     private router: Router
   ) {
-    this.markersLayerVisibility$ = this.floatsMapQuery.selectMarkersLayerVisibility$;
-    this.saltinessLayerVisibility$ = this.floatsMapQuery.selectSaltinessLayerVisibility$;
     this.sidenavOpened$ = this.floatsMapQuery.selectSidenavOpened$;
   }
 
