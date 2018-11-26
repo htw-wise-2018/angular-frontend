@@ -39,3 +39,5 @@ testem.log
 Thumbs.db
 
 .firebase
+cypress/screenshots/*
+cypress/videos/*
