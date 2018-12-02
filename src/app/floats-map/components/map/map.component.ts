@@ -29,6 +29,7 @@ export class MapComponent implements OnInit {
   ) {
     this.floatsMapService.loadFloats();
     this.markersLayerService.onClick((e, point, xy) => this.openFloatDetails(point['id']));
+    this.markersLayerService.onNoPointClick(() => this.closeFloatDetails());
   }
 
 
@@ -42,5 +43,9 @@ export class MapComponent implements OnInit {
 
   openFloatDetails(id: ID) {
     this.router.navigate(['/float', id]);
+  }
+
+  closeFloatDetails() {
+    this.router.navigate(['/']);
   }
 }

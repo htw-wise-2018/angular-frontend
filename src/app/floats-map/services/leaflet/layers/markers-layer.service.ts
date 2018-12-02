@@ -4,23 +4,29 @@ import { map } from 'rxjs/operators';
 import { FloatsMapQuery } from '../../../queries/floats-map.query';
 import { LeafletService } from '../leaflet.service';
 import { LayerService } from './layer.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkersLayerService extends LayerService {
   private onClickFn = null;
+  private onNoPointClickFn = null;
   private points = null;
 
   constructor(
     private floatsMapQuery: FloatsMapQuery,
-    leafletService: LeafletService
+    leafletService: LeafletService,
   ) {
     super(leafletService, floatsMapQuery.selectMarkersLayerVisibility$);
   }
 
   onClick(onClickFn: (e, point, xy) => void) {
     this.onClickFn = onClickFn;
+  }
+
+  onNoPointClick(onNoPointClickFn: () => void) {
+    this.onNoPointClickFn = onNoPointClickFn;
   }
 
   init() {
@@ -47,12 +53,54 @@ export class MarkersLayerService extends LayerService {
   }
 
   protected show() {
+    const wholeWorld = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'properties': {},
+          'geometry': {
+            'type': 'Polygon',
+            'coordinates': [
+              [
+                [
+                  -175,
+                  -85
+                ],
+                [
+                  175,
+                  -85
+                ],
+                [
+                  175,
+                  85
+                ],
+                [
+                  -175,
+                  85
+                ],
+                [
+                  -175,
+                  -85
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    };
+
+    L.glify.shapes({
+      map: this.leafletService.getMap(),
+      data: wholeWorld,
+      click: this.onNoPointClickFn,
+      opacity: 0
+    });
+
     this.layer = L.glify.points({
       map: this.leafletService.getMap(),
       click: this.onClickFn,
-      size: 10,
-      // {Number} exagurates the size of the clickable area to make it easier to click a point
-      sensitivity: 25,
+      size: 6,
       color: { r: 30 / 255, g: 202 / 255, b: 227 / 255 },
       opacity: 0.8,
       data: this.points,
