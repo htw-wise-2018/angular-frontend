@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
     private router: Router,
     private leafletService: LeafletService,
     private esriOceanBasemapTilesLayerService: EsriOceanBasemapTilesLayerService,
-    private saltinessLayerService: HeatMapLayerService,
+    private heatMapLayer: HeatMapLayerService,
     private markersLayerService: GlifyMarkersLayerService,
     private antPathLayerService: AntPathLayerService
   ) {
@@ -37,10 +37,10 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.leafletService.init(this.mapContainer.nativeElement);
 
-    // this.esriOceanBasemapTilesLayerService.init();
+    this.esriOceanBasemapTilesLayerService.init();
     this.markersLayerService.init();
     this.antPathLayerService.init();
-    this.saltinessLayerService.init();
+    this.heatMapLayer.init();
   }
 
   openFloatDetails(id: ID) {
