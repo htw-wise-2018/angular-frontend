@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LineChartComponent } from '@swimlane/ngx-charts';
-import * as _ from 'lodash';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
-import { withLatestFrom } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Float } from '../../models/float.model';
 import { FloatDetailsQuery } from '../../queries/float-details.query';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
@@ -23,10 +22,11 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
 
   float$: Observable<Float>;
   pathLayerVisibility$: Observable<boolean>;
+  floatDetailsLoading$: Observable<boolean>;
 
-  saltinessSerie: object[];
-  pressureSerie: object[];
-  temperatureSerie: object[];
+  saltinessSerie$: Observable<object[]>;
+  pressureSerie$: Observable<object[]>;
+  temperatureSerie$: Observable<object[]>;
 
   constructor(
     private floatsMapService: FloatsMapService,
@@ -52,35 +52,28 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
 
     this.float$ = this.floatsMapQuery.selectActive();
     this.pathLayerVisibility$ = this.floatsMapQuery.selectPathLayerVisibility$;
+    this.floatDetailsLoading$ = this.floatDetailsQuery.selectLoading();
+
+    this.saltinessSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+      map(floatDetails => floatDetails.saltinessValues),
+      map(saltinessValues => saltinessValues.map((value, index) => ({ name: index, value: value }))),
+      map(series => ([{ name: 'Saltiness', series }]))
+    );
+
+    this.temperatureSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+      map(floatDetails => floatDetails.temperatureValues),
+      map(temperatureValues => temperatureValues.map((value, index) => ({ name: index, value: value }))),
+      map(series => ([{ name: 'Temperature', series }]))
+    );
+
+    this.pressureSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+      map(floatDetails => floatDetails.pressureValues),
+      map(pressureValues => pressureValues.map((value, index) => ({ name: index, value: value }))),
+      map(series => ([{ name: 'Pressure', series }]))
+    );
   }
 
   ngOnInit() {
-    this.float$.pipe(
-      withLatestFrom(this.floatDetailsQuery.selectFloatDetails$),
-      untilDestroyed(this)
-    ).subscribe(([float, floatDetails]) => {
-      this.saltinessSerie = [
-        {
-          name: 'Saltiness',
-          series: floatDetails.saltinessValues.map((value, index) => ({ name: index, value: value })),
-          color: '#FF0000'
-        }
-      ];
-
-      this.pressureSerie = [
-        {
-          name: 'Pressure',
-          series: floatDetails.pressureValues.map((value, index) => ({ name: index, value: value }))
-        }
-      ];
-
-      this.temperatureSerie = [
-        {
-          name: 'Temperature',
-          series: floatDetails.temperatureValues.map((value, index) => ({ name: index, value: value }))
-        }
-      ];
-    });
   }
 
   ngOnDestroy() {

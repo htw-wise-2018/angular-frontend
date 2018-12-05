@@ -1,4 +1,4 @@
-<mat-list>
+<mat-list *ngIf="!(floatDetailsLoading$ | async)">
   <mat-list-item>Details</mat-list-item>
   <mat-divider></mat-divider>
   <mat-list-item class="details-container">
@@ -22,7 +22,7 @@
         [legendPosition]="'bottom'"
         [legend]="false"
         [margin]="[0, 0, 0, 0]"
-        [results]="temperatureSerie"
+        [results]="temperatureSerie$ | async"
         [scheme]="{ domain: ['#ff5252'] }"
         [showGridLines]="false"
         [showXAxisLabel]="false"
@@ -44,7 +44,7 @@
         [legendPosition]="'bottom'"
         [legend]="false"
         [margin]="[0, 0, 0, 0]"
-        [results]="pressureSerie"
+        [results]="pressureSerie$ | async"
         [scheme]="{ domain: ['#757575'] }"
         [showGridLines]="false"
         [showXAxisLabel]="false"
@@ -66,7 +66,7 @@
         [legendPosition]="'bottom'"
         [legend]="false"
         [margin]="[0, 0, 0, 0]"
-        [results]="saltinessSerie"
+        [results]="saltinessSerie$ | async"
         [scheme]="{ domain: ['#40c4ff'] }"
         [showGridLines]="false"
         [showXAxisLabel]="false"

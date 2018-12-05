@@ -9,7 +9,13 @@ export interface FloatDetailsState {
 }
 
 const initialState: FloatDetailsState = {
-  floatDetails: null,
+  floatDetails: {
+    id: null,
+    path: [],
+    saltinessValues: [],
+    temperatureValues: [],
+    pressureValues: []
+  },
   loading: true,
   error: null
 };
