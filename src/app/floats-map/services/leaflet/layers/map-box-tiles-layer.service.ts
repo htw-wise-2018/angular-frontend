@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
-import { LayerService } from './layer.service';
 import { LeafletService } from '../leaflet.service';
+import { LayerService } from './layer.service';
 
 @Injectable({
   providedIn: 'root'

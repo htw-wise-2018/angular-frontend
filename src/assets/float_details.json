@@ -1,0 +1,58 @@
+{
+  "data": {
+    "saltinessValues": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "pressureValues": [
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1
+    ],
+    "temperatureValues": [
+      10,
+      1,
+      9,
+      2,
+      8,
+      3,
+      7,
+      4,
+      6,
+      5
+    ],
+    "path": [
+      {
+        "longitude": 0.0,
+        "latitude": 20.0
+      },
+      {
+        "longitude": 10.0,
+        "latitude": 30.0
+      },
+      {
+        "longitude": 25.0,
+        "latitude": 25.0
+      },
+      {
+        "longitude": 5.0,
+        "latitude": 5.0
+      }
+    ]
+  }
+}

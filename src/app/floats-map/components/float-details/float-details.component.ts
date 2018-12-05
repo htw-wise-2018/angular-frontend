@@ -4,11 +4,13 @@ import { LineChartComponent } from '@swimlane/ngx-charts';
 import * as _ from 'lodash';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
 import { Float } from '../../models/float.model';
+import { FloatDetailsQuery } from '../../queries/float-details.query';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
+import { FloatDetailsService } from '../../services/float-details.service';
 import { FloatsMapService } from '../../services/floats-map.service';
 import { AntPathLayerService } from '../../services/leaflet/layers/ant-path-layer.service';
-import { PathService } from '../../services/path.service';
 import { FloatsMapStore } from '../../store/floats-map.store';
 
 @Component({
@@ -31,16 +33,20 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
     private floatsMapQuery: FloatsMapQuery,
     private floatsMapStore: FloatsMapStore,
     private pathLayerService: AntPathLayerService,
-    private pathService: PathService,
+    private floatDetailsService: FloatDetailsService,
+    private floatDetailsQuery: FloatDetailsQuery,
     private route: ActivatedRoute
   ) {
     this.route.paramMap.pipe(
       untilDestroyed(this)
     ).subscribe(paramMap => {
-      const id = paramMap.get('id');
+      if (paramMap.get('mode') === 'details') {
+        const id = paramMap.get('id');
 
-      this.pathService.loadPath(id);
-      this.floatsMapStore.setActive(id);
+        this.floatDetailsService.loadFloatDetails(id);
+        this.floatsMapStore.setActive(id);
+      }
+
       this.floatsMapStore.updatePathLayerVisibility(paramMap.get('mode') === 'path');
     });
 
@@ -50,12 +56,13 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.float$.pipe(
+      withLatestFrom(this.floatDetailsQuery.selectFloatDetails$),
       untilDestroyed(this)
-    ).subscribe(float => {
+    ).subscribe(([float, floatDetails]) => {
       this.saltinessSerie = [
         {
           name: 'Saltiness',
-          series: _.chain(_.range(100)).map(i => ({ name: i, value: _.random(0, 1000) })).value(),
+          series: floatDetails.saltinessValues.map((value, index) => ({ name: index, value: value })),
           color: '#FF0000'
         }
       ];
@@ -63,14 +70,14 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
       this.pressureSerie = [
         {
           name: 'Pressure',
-          series: _.chain(_.range(100)).map(i => ({ name: i, value: _.random(0, 1000) })).value()
+          series: floatDetails.pressureValues.map((value, index) => ({ name: index, value: value }))
         }
       ];
 
       this.temperatureSerie = [
         {
           name: 'Temperature',
-          series: _.chain(_.range(100)).map(i => ({ name: i, value: _.random(0, 1000) })).value()
+          series: floatDetails.temperatureValues.map((value, index) => ({ name: index, value: value }))
         }
       ];
     });

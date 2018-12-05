@@ -6,10 +6,13 @@ import {
   MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
-  MatDialogModule, MatFormFieldModule,
-  MatIconModule, MatListModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatListModule,
   MatRadioModule,
-  MatSidenavModule, MatSlideToggleModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';

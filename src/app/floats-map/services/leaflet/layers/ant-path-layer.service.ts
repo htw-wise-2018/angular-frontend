@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, filter, map, take } from 'rxjs/operators';
+import { FloatDetailsQuery } from '../../../queries/float-details.query';
 import { FloatsMapQuery } from '../../../queries/floats-map.query';
-import { PathQuery } from '../../../queries/path.query';
 import { LeafletService } from '../leaflet.service';
 import { LayerService } from './layer.service';
 
@@ -11,7 +11,7 @@ import { LayerService } from './layer.service';
 export class AntPathLayerService extends LayerService {
   constructor(
     private floatsMapQuery: FloatsMapQuery,
-    private pathQuery: PathQuery,
+    private floatDetailsQuery: FloatDetailsQuery,
     leafletService: LeafletService
   ) {
     super(leafletService, floatsMapQuery.selectPathLayerVisibility$);
@@ -30,7 +30,8 @@ export class AntPathLayerService extends LayerService {
   init() {
     super.init();
 
-    this.pathQuery.selectAll().pipe(
+    this.floatDetailsQuery.selectFloatDetails$.pipe(
+      map(floatDetails => floatDetails.path),
       map(pathCoordinates => pathCoordinates.map(pathCoordinate => [pathCoordinate.latitude, pathCoordinate.longitude]))
     ).subscribe((pathCoordinates) => {
       this.layer.setLatLngs(pathCoordinates);
@@ -44,11 +45,12 @@ export class AntPathLayerService extends LayerService {
 
   show() {
     super.show();
-    this.zoomIntoBounds();
+    this.zoomIntoPathBounds();
   }
 
-  zoomIntoBounds() {
-    this.pathQuery.selectAll().pipe(
+  zoomIntoPathBounds() {
+    this.floatDetailsQuery.selectFloatDetails$.pipe(
+      map(floatDetails => floatDetails.path),
       filter(pathCoordinates => pathCoordinates.length > 0),
       take(1),
       delay(1)

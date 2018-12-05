@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { FloatsMapQuery } from '../../../queries/floats-map.query';
-import { LayerService } from './layer.service';
 import { LeafletService } from '../leaflet.service';
+import { LayerService } from './layer.service';
 
 @Injectable({
   providedIn: 'root'

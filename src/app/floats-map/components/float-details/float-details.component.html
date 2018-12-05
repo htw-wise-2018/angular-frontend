@@ -18,18 +18,18 @@
   <mat-list-item class="chart-list-item">
     <div class="chart-container">
       <ngx-charts-line-chart
-        [margin]="[0, 0, 0, 0]"
-        [scheme]="{ domain: ['#ff5252'] }"
-        [yAxisTicks]="[0, 500, 1000]"
+        [gradient]="false"
+        [legendPosition]="'bottom'"
         [legend]="false"
+        [margin]="[0, 0, 0, 0]"
+        [results]="temperatureSerie"
+        [scheme]="{ domain: ['#ff5252'] }"
+        [showGridLines]="false"
         [showXAxisLabel]="false"
         [showYAxisLabel]="false"
-        [gradient]="false"
-        [showGridLines]="false"
-        [legendPosition]="'bottom'"
         [xAxisLabel]="'X-Axis'"
-        [yAxis]="'Y-Axis'"
-        [results]="temperatureSerie">
+        [yAxisTicks]="[0, 500, 1000]"
+        [yAxis]="'Y-Axis'">
       </ngx-charts-line-chart>
     </div>
   </mat-list-item>
@@ -40,18 +40,18 @@
   <mat-list-item class="chart-list-item">
     <div class="chart-container">
       <ngx-charts-line-chart
-        [margin]="[0, 0, 0, 0]"
-        [scheme]="{ domain: ['#757575'] }"
-        [yAxisTicks]="[0, 500, 1000]"
+        [gradient]="false"
+        [legendPosition]="'bottom'"
         [legend]="false"
+        [margin]="[0, 0, 0, 0]"
+        [results]="pressureSerie"
+        [scheme]="{ domain: ['#757575'] }"
+        [showGridLines]="false"
         [showXAxisLabel]="false"
         [showYAxisLabel]="false"
-        [gradient]="false"
-        [showGridLines]="false"
-        [legendPosition]="'bottom'"
         [xAxisLabel]="'X-Axis'"
-        [yAxis]="'Y-Axis'"
-        [results]="pressureSerie">
+        [yAxisTicks]="[0, 500, 1000]"
+        [yAxis]="'Y-Axis'">
       </ngx-charts-line-chart>
     </div>
   </mat-list-item>
@@ -62,18 +62,18 @@
   <mat-list-item class="chart-list-item">
     <div class="chart-container">
       <ngx-charts-line-chart
-        [margin]="[0, 0, 0, 0]"
-        [scheme]="{ domain: ['#40c4ff'] }"
-        [yAxisTicks]="[0, 500, 1000]"
+        [gradient]="false"
+        [legendPosition]="'bottom'"
         [legend]="false"
+        [margin]="[0, 0, 0, 0]"
+        [results]="saltinessSerie"
+        [scheme]="{ domain: ['#40c4ff'] }"
+        [showGridLines]="false"
         [showXAxisLabel]="false"
         [showYAxisLabel]="false"
-        [gradient]="false"
-        [showGridLines]="false"
-        [legendPosition]="'bottom'"
         [xAxisLabel]="'X-Axis'"
-        [yAxis]="'Y-Axis'"
-        [results]="saltinessSerie">
+        [yAxisTicks]="[0, 500, 1000]"
+        [yAxis]="'Y-Axis'">
       </ngx-charts-line-chart>
     </div>
   </mat-list-item>

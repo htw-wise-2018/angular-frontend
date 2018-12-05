@@ -6,12 +6,11 @@ import { LineChartComponent } from '@swimlane/ngx-charts';
   selector: 'ngx-charts-line-chart[margin]'
 })
 export class NgxLineChartMarginDirective {
-  @Input() set margin(value: [number, number, number, number]) {
-    this.lineChart.margin = value;
+  constructor(@Self() private lineChart: LineChartComponent) {
   }
 
-
-  constructor(@Self() private lineChart: LineChartComponent) {
+  @Input() set margin(value: [number, number, number, number]) {
+    this.lineChart.margin = value;
   }
 
 }

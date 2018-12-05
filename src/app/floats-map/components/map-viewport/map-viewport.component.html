@@ -1,19 +1,19 @@
-<mat-sidenav-container class="sidenav-container" [hasBackdrop]="sidenavHasBackdrop">
+<mat-sidenav-container [hasBackdrop]="sidenavHasBackdrop" class="sidenav-container">
   <mat-sidenav
-    class="mat-elevation-z24"
     #sidenav
-    [opened]="sidenavOpened$ | async"
+    (openedChange)="onOpenChange($event)"
     [autoFocus]="false"
-    [mode]="sidenavMode"
     [disableClose]="true"
-    (openedChange)="onOpenChange($event)">
+    [mode]="sidenavMode"
+    [opened]="sidenavOpened$ | async"
+    class="mat-elevation-z24">
 
     <div>
       <div class="sidenav-button-container">
-        <button mat-icon-button (click)="onShowPathLayer()">
+        <button (click)="onShowPathLayer()" mat-icon-button>
           <mat-icon>map</mat-icon>
         </button>
-        <button mat-icon-button (click)="onSidenavClose()">
+        <button (click)="onSidenavClose()" mat-icon-button>
           <mat-icon>close</mat-icon>
         </button>
       </div>

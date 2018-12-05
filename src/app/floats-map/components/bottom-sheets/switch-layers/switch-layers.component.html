@@ -1,8 +1,8 @@
 <mat-list>
   <mat-list-item>
     <mat-slide-toggle
-      [checked]="saltinessLayerVisibility$ | async"
-      (change)="onSaltinessLayerVisibilityChange($event)">
+      (change)="onSaltinessLayerVisibilityChange($event)"
+      [checked]="saltinessLayerVisibility$ | async">
       <i class="mdi mdi-18px mdi-blur"></i>
       Saltiness Layer
     </mat-slide-toggle>
@@ -10,8 +10,8 @@
 
   <mat-list-item>
     <mat-slide-toggle
-      [checked]="markersLayerVisibility$ | async"
-      (change)="onMakersLayerVisibilityChange($event)">
+      (change)="onMakersLayerVisibilityChange($event)"
+      [checked]="markersLayerVisibility$ | async">
       <i class="mdi mdi-18px mdi-map-marker"></i>
       Markers Layer
     </mat-slide-toggle>

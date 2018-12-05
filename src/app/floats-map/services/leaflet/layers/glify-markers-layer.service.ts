@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { FloatsMapQuery } from '../../../queries/floats-map.query';
 import { LeafletService } from '../leaflet.service';
 import { LayerService } from './layer.service';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
