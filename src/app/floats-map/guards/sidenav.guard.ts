@@ -11,7 +11,13 @@ export class SidenavGuard implements CanActivate, CanDeactivate<any> {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    this.floatsMapService.updateSidenavOpened(true);
+    switch (next.paramMap.get('mode')) {
+      case 'details':
+        this.floatsMapService.updateSidenavOpened(true);
+        break;
+      default:
+        this.floatsMapService.updateSidenavOpened(false);
+    }
 
     return true;
   }

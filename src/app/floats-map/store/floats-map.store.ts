@@ -6,7 +6,8 @@ export interface FloatsMapState extends EntityState<Float> {
   ui: {
     saltinessLayerVisibility: boolean;
     markersLayerVisibility: boolean;
-    sidenavOpened: boolean
+    pathLayerVisibility: boolean;
+    sidenavOpened: boolean;
   };
 }
 
@@ -14,6 +15,7 @@ const initialState: FloatsMapState = {
   ui: {
     saltinessLayerVisibility: true,
     markersLayerVisibility: true,
+    pathLayerVisibility: false,
     sidenavOpened: false
   }
 };
@@ -39,6 +41,15 @@ export class FloatsMapStore extends EntityStore<FloatsMapState, Float> {
       ui: {
         ...this._value().ui,
         markersLayerVisibility
+      }
+    });
+  }
+
+  updatePathLayerVisibility(pathLayerVisibility: boolean) {
+    this.updateRoot({
+      ui: {
+        ...this._value().ui,
+        pathLayerVisibility
       }
     });
   }

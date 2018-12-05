@@ -10,6 +10,7 @@ import { LayerButtonComponent } from './components/layer-button/layer-button.com
 import { ButtonNavComponent } from './components/button-nav/button-nav.component';
 import { FilterFloatsComponent } from './components/bottom-sheets/filter-floats/filter-floats.component';
 import { SwitchLayersComponent } from './components/bottom-sheets/switch-layers/switch-layers.component';
+import { ClosePathButtonComponent } from './components/close-path-button/close-path-button.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { SwitchLayersComponent } from './components/bottom-sheets/switch-layers/
     LayerButtonComponent,
     ButtonNavComponent,
     FilterFloatsComponent,
-    SwitchLayersComponent
+    SwitchLayersComponent,
+    ClosePathButtonComponent
   ],
   entryComponents: [
     FilterFloatsComponent,

@@ -1,4 +1,5 @@
 <nav>
+  <app-close-path-button *ngIf="pathLayerVisibility$ | async"></app-close-path-button>
   <app-layer-button></app-layer-button>
   <app-filter-button></app-filter-button>
 </nav>

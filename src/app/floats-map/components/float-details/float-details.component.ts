@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Float } from '../../models/float.model';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
+import { AntPathLayerService } from '../../services/leaflet/layers/ant-path-layer.service';
+import { PathService } from '../../services/path.service';
 import { FloatsMapStore } from '../../store/floats-map.store';
 
 @Component({
@@ -18,6 +20,8 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
   @ViewChildren(LineChartComponent) lineCharts: LineChartComponent[];
 
   float$: Observable<Float>;
+  pathLayerVisibility$: Observable<boolean>;
+
   saltinessSerie: object[];
   pressureSerie: object[];
   temperatureSerie: object[];
@@ -26,13 +30,22 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
     private floatsMapService: FloatsMapService,
     private floatsMapQuery: FloatsMapQuery,
     private floatsMapStore: FloatsMapStore,
+    private pathLayerService: AntPathLayerService,
+    private pathService: PathService,
     private route: ActivatedRoute
   ) {
     this.route.paramMap.pipe(
       untilDestroyed(this)
-    ).subscribe(paramMap => this.floatsMapStore.setActive(paramMap.get('id')));
+    ).subscribe(paramMap => {
+      const id = paramMap.get('id');
+
+      this.pathService.loadPath(id);
+      this.floatsMapStore.setActive(id);
+      this.floatsMapStore.updatePathLayerVisibility(paramMap.get('mode') === 'path');
+    });
 
     this.float$ = this.floatsMapQuery.selectActive();
+    this.pathLayerVisibility$ = this.floatsMapQuery.selectPathLayerVisibility$;
   }
 
   ngOnInit() {
@@ -65,5 +78,6 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.floatsMapStore.setActive(null);
+    this.floatsMapStore.updatePathLayerVisibility(false);
   }
 }

@@ -39,6 +39,10 @@ export class FloatsMapService {
     this.floatsStore.updateMarkersLayerVisibility(markersLayerVisibility);
   }
 
+  updateAntPathLayerVisibility(antPathLayerVisibility: boolean) {
+    this.floatsStore.updatePathLayerVisibility(antPathLayerVisibility);
+  }
+
   updateSidenavOpened(sidenavOpened: boolean) {
     this.floatsStore.updateSidenavOpened(sidenavOpened);
   }

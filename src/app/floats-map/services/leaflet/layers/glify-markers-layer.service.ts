@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class MarkersLayerService extends LayerService {
+export class GlifyMarkersLayerService extends LayerService {
   private onClickFn = null;
   private onNoPointClickFn = null;
   private points = null;
@@ -52,7 +52,7 @@ export class MarkersLayerService extends LayerService {
     });
   }
 
-  protected show() {
+  show() {
     const wholeWorld = {
       'type': 'FeatureCollection',
       'features': [
@@ -108,7 +108,7 @@ export class MarkersLayerService extends LayerService {
     });
   }
 
-  protected hide() {
+  hide() {
     this.layer.remove();
   }
 }

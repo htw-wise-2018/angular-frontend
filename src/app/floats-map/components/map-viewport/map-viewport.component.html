@@ -9,12 +9,14 @@
     (openedChange)="onOpenChange($event)">
 
     <div>
-      <div class="close-button-container">
+      <div class="sidenav-button-container">
+        <button mat-icon-button (click)="onShowPathLayer()">
+          <mat-icon>map</mat-icon>
+        </button>
         <button mat-icon-button (click)="onSidenavClose()">
           <mat-icon>close</mat-icon>
         </button>
       </div>
-
 
       <router-outlet></router-outlet>
     </div>

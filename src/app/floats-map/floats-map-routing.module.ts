@@ -10,11 +10,11 @@ const routes: Routes = [
     component: MapViewportComponent,
     children: [
       {
-        path: 'float/:id',
+        path: 'float/:id/:mode',
         component: FloatDetailsComponent,
         canActivate: [SidenavGuard],
-        canDeactivate: [SidenavGuard]
-      }
+        canDeactivate: [SidenavGuard],
+      },
     ]
   }
 ];

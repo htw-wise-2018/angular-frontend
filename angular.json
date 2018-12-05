@@ -61,7 +61,8 @@
               "node_modules/leaflet/dist/leaflet-src.js",
               "node_modules/heatmap.js/build/heatmap.js",
               "node_modules/heatmap.js/plugins/leaflet-heatmap/leaflet-heatmap.js",
-              "node_modules/leaflet.glify/glify.js"
+              "node_modules/leaflet.glify/glify.js",
+              "node_modules/leaflet-ant-path/dist/leaflet-ant-path.js"
             ]
           },
           "configurations": {

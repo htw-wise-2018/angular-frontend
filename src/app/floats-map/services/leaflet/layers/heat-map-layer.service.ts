@@ -7,7 +7,7 @@ import { LeafletService } from '../leaflet.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SaltinessLayerService extends LayerService {
+export class HeatMapLayerService extends LayerService {
   constructor(
     private floatsMapQuery: FloatsMapQuery,
     leafletService: LeafletService

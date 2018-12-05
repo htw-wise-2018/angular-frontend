@@ -12,17 +12,17 @@ export abstract class LayerService {
 
   init() {
     if (this.visibility$) {
-      this.visibility$.subscribe(visibility => visibility ? this.show() : this.hide());
+      this.visibility$.pipe().subscribe(visibility => visibility ? this.show() : this.hide());
     } else {
       this.show();
     }
   }
 
-  protected hide() {
-    this.layer.removeFrom(this.leafletService.getMap());
+  hide() {
+    this.leafletService.getMap().removeLayer(this.layer);
   }
 
-  protected show() {
-    this.layer.addTo(this.leafletService.getMap());
+  show() {
+    this.leafletService.getMap().addLayer(this.layer);
   }
 }

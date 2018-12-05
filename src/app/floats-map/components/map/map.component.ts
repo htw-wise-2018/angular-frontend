@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
 import { FloatsMapQuery } from '../../queries/floats-map.query';
 import { FloatsMapService } from '../../services/floats-map.service';
+import { AntPathLayerService } from '../../services/leaflet/layers/ant-path-layer.service';
 import { EsriOceanBasemapTilesLayerService } from '../../services/leaflet/layers/esri-ocean-basemap-tiles-layer.service';
-import { MarkersLayerService } from '../../services/leaflet/layers/markers-layer.service';
-import { SaltinessLayerService } from '../../services/leaflet/layers/saltiness-layer.service';
+import { GlifyMarkersLayerService } from '../../services/leaflet/layers/glify-markers-layer.service';
+import { HeatMapLayerService } from '../../services/leaflet/layers/heat-map-layer.service';
 import { LeafletService } from '../../services/leaflet/leaflet.service';
 
 
@@ -22,10 +23,10 @@ export class MapComponent implements OnInit {
     private floatsMapService: FloatsMapService,
     private router: Router,
     private leafletService: LeafletService,
-    // private mapBoxTilesLayerService: MapBoxTilesLayerService,
     private esriOceanBasemapTilesLayerService: EsriOceanBasemapTilesLayerService,
-    private saltinessLayerService: SaltinessLayerService,
-    private markersLayerService: MarkersLayerService
+    private saltinessLayerService: HeatMapLayerService,
+    private markersLayerService: GlifyMarkersLayerService,
+    private antPathLayerService: AntPathLayerService
   ) {
     this.floatsMapService.loadFloats();
     this.markersLayerService.onClick((e, point, xy) => this.openFloatDetails(point['id']));
@@ -35,14 +36,15 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.leafletService.init(this.mapContainer.nativeElement);
-    // this.mapBoxTilesLayerService.init();
-    this.esriOceanBasemapTilesLayerService.init();
+
+    // this.esriOceanBasemapTilesLayerService.init();
     this.markersLayerService.init();
+    this.antPathLayerService.init();
     this.saltinessLayerService.init();
   }
 
   openFloatDetails(id: ID) {
-    this.router.navigate(['/float', id]);
+    this.router.navigate(['/float', id, 'details']);
   }
 
   closeFloatDetails() {

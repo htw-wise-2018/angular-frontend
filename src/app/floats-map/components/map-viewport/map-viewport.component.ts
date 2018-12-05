@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 import { Observable } from 'rxjs';
@@ -12,7 +13,11 @@ import { FloatsMapStore } from '../../store/floats-map.store';
   styleUrls: ['./map-viewport.component.scss']
 })
 export class MapViewportComponent implements OnInit {
+  @ViewChild('sidenav')
+  sidenav: MatSidenav;
+
   sidenavOpened$: Observable<boolean>;
+  pathLayerVisibility$: Observable<boolean>;
   sidenavMode: 'over' | 'push' | 'side' = 'over';
   sidenavHasBackdrop = false;
 
@@ -24,6 +29,7 @@ export class MapViewportComponent implements OnInit {
     private router: Router
   ) {
     this.sidenavOpened$ = this.floatsMapQuery.selectSidenavOpened$;
+    this.pathLayerVisibility$ = this.floatsMapQuery.selectPathLayerVisibility$;
   }
 
   ngOnInit() {
@@ -39,10 +45,15 @@ export class MapViewportComponent implements OnInit {
 
   @HostListener('document:keydown.escape')
   onEscape() {
-    this.floatsMapService.updateSidenavOpened(false);
+    this.router.navigate(['/']);
   }
 
-  async onSidenavClose() {
-    await this.router.navigate(['/']);
+  onSidenavClose() {
+    this.router.navigate(['/']);
+  }
+
+  onShowPathLayer() {
+    const id = this.routerQuery.getSnapshot().state.root.paramMap.get('id');
+    this.router.navigate(['/float', id, 'path']);
   }
 }
