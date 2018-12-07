@@ -28,3 +28,12 @@ mat-list-item.chart-list-item {
   margin: 0.25rem;
   text-transform: uppercase;
 }
+
+
+table {
+  width: 100%;
+
+  th, td {
+    text-align: left;
+  }
+}

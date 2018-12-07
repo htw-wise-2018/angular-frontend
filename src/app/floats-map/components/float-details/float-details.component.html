@@ -2,14 +2,22 @@
   <mat-list-item>Details</mat-list-item>
   <mat-divider></mat-divider>
   <mat-list-item class="details-container">
-    <dl *ngIf="float$ | async as float">
-      <dt>ID</dt>
-      <dd>{{float.id}}</dd>
-      <dt>Longitude</dt>
-      <dd>{{float.longitude}}</dd>
-      <dt>Latitude</dt>
-      <dd>{{float.latitude}}</dd>
-    </dl>
+    <table *ngIf="float$ | async as float">
+      <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{float.id}}</td>
+      </tr>
+      <tr>
+        <th>Longitude</th>
+        <td>{{float.longitude}}</td>
+      </tr>
+      <tr>
+        <th>Latitude</th>
+        <td>{{float.latitude}}</td>
+      </tr>
+      </tbody>
+    </table>
   </mat-list-item>
   <mat-divider></mat-divider>
 

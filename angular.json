@@ -47,6 +47,11 @@
               "src/manifest.json",
               "src/browserconfig.xml",
               {
+                "glob":"robots.txt",
+                "input": "src",
+                "output": ""
+              },
+              {
                 "glob": "*.png",
                 "input": "node_modules/leaflet/dist/images/",
                 "output": "assets/leaflet/"
