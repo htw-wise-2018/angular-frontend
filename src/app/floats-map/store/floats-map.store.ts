@@ -8,7 +8,7 @@ export interface FloatsMapState extends EntityState<Float> {
     markersLayerVisibility: boolean;
     pathLayerVisibility: boolean;
     sidenavOpened: boolean;
-  }
+  };
 }
 
 const initialState: FloatsMapState = {
