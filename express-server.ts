@@ -1,8 +1,8 @@
 import * as commandLineArgs from 'command-line-args';
-import * as fastify from 'fastify';
-import * as fastifyStatic from 'fastify-static';
-import { IncomingMessage, Server, ServerResponse } from 'http';
+import * as express from 'express';
+
 import * as path from 'path';
+var fs = require("fs");
 
 interface CommandLineArgs {
   port: number;
@@ -15,12 +15,19 @@ const argsDefinitions = [
 ];
 
 const args: CommandLineArgs = commandLineArgs(argsDefinitions);
-const server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify();
 
-server.register(fastifyStatic, {
-  root: args.publicDir
+const app = express();
+
+app.use(express.static(args.publicDir));
+
+app.use(function(req, res){
+  fs.readFile(path.join(args.publicDir, "index.html"), 'utf-8', function(err, data){
+      if(err)
+          throw err;
+      res.end(data);
+  });
 });
 
-server.listen(args.port, '0.0.0.0')
-  .then(console.log)
-  .catch(console.error);
+
+
+app.listen(args.port, '0.0.0.0', () => console.log("listening on port " + args.port));
