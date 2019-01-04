@@ -21,6 +21,6 @@ server.register(fastifyStatic, {
   root: args.publicDir
 });
 
-server.listen(args.port)
+server.listen(args.port, '0.0.0.0')
   .then(console.log)
   .catch(console.error);
