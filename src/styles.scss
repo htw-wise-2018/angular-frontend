@@ -19,6 +19,9 @@ body {
   display: none;
 }
 
+canvas.leaflet-zoom-animated.glify-canvas {
+  cursor: crosshair;
+}
 
 .leaflet-container .leaflet-control-attribution,
 .leaflet-container .leaflet-control-scale {
