@@ -32,7 +32,7 @@ export class GlifyMarkersLayerService extends LayerService {
     combineLatest([
       this.floatsMapQuery.selectAll().pipe(
         map(floats => floats.map(float => {
-          const point = [float.latitude, float.longitude];
+          const point = [float.coordinate.latitude, float.coordinate.longitude];
           point['id'] = float.id;
           return point;
         }))

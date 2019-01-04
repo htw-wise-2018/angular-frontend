@@ -19,15 +19,9 @@ export class FloatsMapService {
   loadFloats() {
     this.floatsStore.setLoading(true);
 
-    this.httpClient.get<FloatsResponse>('assets/last_seen.json').pipe(
-      map(response => response.features),
-      map(features => {
-        return features.map(feature => createFloat({
-          id: feature.properties.identifier,
-          longitude: feature.geometry.coordinates[0],
-          latitude: feature.geometry.coordinates[1]
-        }));
-      })
+    this.httpClient.get<FloatsResponse>('assets/mocks/mock-all.json').pipe(
+      map(response => response.data),
+      map(floats => floats.map(createFloat))
     ).subscribe(floats => this.floatsStore.set(floats));
   }
 

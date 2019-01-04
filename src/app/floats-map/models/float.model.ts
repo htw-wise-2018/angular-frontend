@@ -1,15 +1,14 @@
 import { ID } from '@datorama/akita';
+import { Coordinate } from './float-details.model';
 
 export interface Float {
   id: ID;
-  longitude: number;
-  latitude: number;
+  coordinate: Coordinate;
 }
 
-export function createFloat({ id, longitude, latitude }: Partial<Float>): Float {
+export function createFloat({ id, coordinate }: Partial<Float>): Float {
   return {
     id,
-    longitude,
-    latitude
+    coordinate
   };
 }
