@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { FloatsResponse } from '../interfaces/floats-response';
 import { createFloat } from '../models/float.model';
 import { FloatsMapStore } from '../store/floats-map.store';
@@ -19,7 +20,7 @@ export class FloatsMapService {
   loadFloats() {
     this.floatsStore.setLoading(true);
 
-    this.httpClient.get<FloatsResponse>('assets/mocks/mock-all.json').pipe(
+    this.httpClient.get<FloatsResponse>(environment.endpoints.lastSeen).pipe(
       map(response => response.data),
       map(floats => floats.map(createFloat))
     ).subscribe(floats => this.floatsStore.set(floats));
