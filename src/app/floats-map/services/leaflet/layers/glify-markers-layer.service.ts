@@ -99,8 +99,8 @@ export class GlifyMarkersLayerService extends LayerService {
     this.layer = L.glify.points({
       map: this.leafletService.getMap(),
       click: this.onClickFn,
-      size: 6,
-      color: { r: 30 / 255, g: 202 / 255, b: 227 / 255 },
+      size: 7,
+      color: { r: 255 / 255, g: 0 / 255, b: 0 / 255 },
       opacity: 0.8,
       data: this.points,
       className: 'glify-canvas'

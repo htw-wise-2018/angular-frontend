@@ -13,7 +13,7 @@ export interface FloatsMapState extends EntityState<Float> {
 
 const initialState: FloatsMapState = {
   ui: {
-    saltinessLayerVisibility: true,
+    saltinessLayerVisibility: false,
     markersLayerVisibility: true,
     pathLayerVisibility: false,
     sidenavOpened: false
