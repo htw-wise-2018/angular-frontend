@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { FloatsResponse } from '../interfaces/floats-response';
 import { createFloat } from '../models/float.model';
@@ -22,6 +22,7 @@ export class FloatsMapService {
 
     this.httpClient.get<FloatsResponse>(environment.endpoints.lastSeen).pipe(
       map(response => response.data),
+      tap(console.log),
       map(floats => floats.map(createFloat))
     ).subscribe(floats => this.floatsStore.set(floats));
   }

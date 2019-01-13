@@ -3,7 +3,7 @@ export const environment = {
   googleMapsApiKey: '',
   mapBoxApiKey: '',
   endpoints: {
-    lastSeen: 'https://meintoller.server/floats',
-    details: 'https://meintoller.server/floats/{id}'
+    lastSeen: 'http://ecco.f4.htw-berlin.de:8080/last_coordinates',
+    details: 'http://ecco.f4.htw-berlin.de:8080/measurements/{id}'
   }
 };

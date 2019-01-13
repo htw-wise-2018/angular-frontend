@@ -27,7 +27,7 @@ export class HeatMapLayerService extends LayerService {
     this.floatsMapQuery
       .selectAll()
       .pipe(
-        map(floats => ({ data: floats.map(float => float.coordinate) }))
+        map(floats => ({ data: floats.map(float => float.coordinates) }))
       )
       .subscribe(data => this.layer.setData(data));
   }

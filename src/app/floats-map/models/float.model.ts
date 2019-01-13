@@ -3,12 +3,12 @@ import { Coordinate } from './float-details.model';
 
 export interface Float {
   id: ID;
-  coordinate: Coordinate;
+  coordinates: Coordinate;
 }
 
-export function createFloat({ id, coordinate }: Partial<Float>): Float {
+export function createFloat({ id, coordinates }: Partial<Float>): Float {
   return {
     id,
-    coordinate
+    coordinates
   };
 }

@@ -7,8 +7,8 @@ export const environment = {
   googleMapsApiKey: '',
   mapBoxApiKey: '',
   endpoints: {
-    lastSeen: 'http://localhost:4200/assets/mocks/mock-all.json',
-    details: 'http://localhost:4200/assets/mocks/mock-details.json?id={id}'
+    lastSeen: 'http://ecco.f4.htw-berlin.de:8080/last_coordinates',
+    details: 'http://ecco.f4.htw-berlin.de:8080/measurements/{id}'
   }
 };
 
