@@ -31,7 +31,7 @@
     "@angular/pwa": "^0.12.2",
     "@angular/router": "^7.2.1",
     "@angular/service-worker": "^7.2.1",
-    "@datorama/akita": "^1.24.1",
+    "@datorama/akita": "^1.24.2",
     "@datorama/akita-ng-router-store": "^1.0.2",
     "@mdi/font": "^3.3.92",
     "@swimlane/ngx-charts": "^10.0.0",
@@ -58,7 +58,7 @@
     "@types/node": "^10.12.18",
     "codelyzer": "^4.5.0",
     "cypress": "^3.1.4",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.0.1",
     "tslint": "^5.12.1",
     "typescript": "^3.2.4"
   }

@@ -24,9 +24,9 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
   pathLayerVisibility$: Observable<boolean>;
   floatDetailsLoading$: Observable<boolean>;
 
-  saltinessSerie$: Observable<object[]>;
-  pressureSerie$: Observable<object[]>;
-  temperatureSerie$: Observable<object[]>;
+  saltinessSeries$: Observable<object[]>;
+  pressureSeries$: Observable<object[]>;
+  temperatureSeries$: Observable<object[]>;
 
   constructor(
     private floatsMapService: FloatsMapService,
@@ -54,19 +54,19 @@ export class FloatDetailsComponent implements OnInit, OnDestroy {
     this.pathLayerVisibility$ = this.floatsMapQuery.selectPathLayerVisibility$;
     this.floatDetailsLoading$ = this.floatDetailsQuery.selectLoading();
 
-    this.saltinessSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+    this.saltinessSeries$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
       map(floatDetails => floatDetails.saltinessValues),
       map(saltinessValues => saltinessValues.map((value, index) => ({ name: index, value: value }))),
       map(series => ([{ name: 'Saltiness', series }]))
     );
 
-    this.temperatureSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+    this.temperatureSeries$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
       map(floatDetails => floatDetails.temperatureValues),
       map(temperatureValues => temperatureValues.map((value, index) => ({ name: index, value: value }))),
       map(series => ([{ name: 'Temperature', series }]))
     );
 
-    this.pressureSerie$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
+    this.pressureSeries$ = this.floatDetailsQuery.selectFloatDetails$.pipe(
       map(floatDetails => floatDetails.pressureValues),
       map(pressureValues => pressureValues.map((value, index) => ({ name: index, value: value }))),
       map(series => ([{ name: 'Pressure', series }]))
