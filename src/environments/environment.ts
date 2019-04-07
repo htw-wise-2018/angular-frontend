@@ -2,13 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const mockEndpoints = false;
+
 export const environment = {
   production: false,
-  googleMapsApiKey: '',
   mapBoxApiKey: '',
   endpoints: {
-    lastSeen: 'http://ecco.f4.htw-berlin.de:8080/last_coordinates',
-    details: 'http://ecco.f4.htw-berlin.de:8080/measurements/{id}'
+    lastSeen: mockEndpoints ? 'http://localhost:4200/assets/mocks/mock-all.json' : 'http://ecco.f4.htw-berlin.de:8080/last_coordinates',
+    details: mockEndpoints ? 'http://localhost:4200/assets/mocks/mock-details.json' : 'http://ecco.f4.htw-berlin.de:8080/measurements/{id}'
   }
 };
 

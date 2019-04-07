@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './floats-map/floats-map.module#FloatsMapModule'
+    loadChildren: './buoys-map/buoys-map.module#BuoysMapModule'
   }
 ];
 

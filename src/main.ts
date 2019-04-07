@@ -13,8 +13,8 @@ if (environment.production) {
 
 const exclude: string[] = [
   'router',
-  'floatsMap.ui.sidenavOpened',
-  'floatsMap.ui.pathLayerVisibility'
+  'buoysMap.ui.sidenavOpened',
+  'buoysMap.ui.pathLayerVisibility'
 ];
 
 persistState({

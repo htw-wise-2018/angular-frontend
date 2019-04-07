@@ -2,14 +2,14 @@
   "data": [
     {
       "id": "209384928",
-      "coordinate": {
+      "coordinates": {
         "longitude": 1,
         "latitude": 1
       }
     },
     {
       "id": "209384929",
-      "coordinate": {
+      "coordinates": {
         "longitude": 0,
         "latitude": 0
       }
