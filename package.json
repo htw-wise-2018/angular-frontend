@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run build:leaflet.glify && ng serve",
-    "start:prod": "node dist/express-server.js --port 2000",
+    "start:prod": "node dist/express-server.js --port 80",
     "build:leaflet.glify": "cd node_modules/leaflet.glify/ && npm install && npm run build && cd ../../",
     "build:express": "tsc --project server.tsconfig.json",
     "build": "npm run build:leaflet.glify && ng build --prod && npm run build:express",
